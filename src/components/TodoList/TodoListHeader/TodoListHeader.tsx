@@ -13,10 +13,11 @@ const TodoListHeader = () => {
   };
 
   useEffect(() => {
-    inputRef.current?.addEventListener("keypress", keyPressEventListener);
+    const inputDomNode = inputRef.current;
+    inputDomNode?.addEventListener("keypress", keyPressEventListener);
 
     return () =>
-      inputRef.current?.removeEventListener("keypress", keyPressEventListener);
+      inputDomNode?.removeEventListener("keypress", keyPressEventListener);
   }, [inputValue]);
 
   const keyPressEventListener = (e: KeyboardEvent) => {
