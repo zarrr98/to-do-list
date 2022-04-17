@@ -1,3 +1,5 @@
+$boxWidth: 400px;
+
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -11,12 +13,20 @@
 
   &__box {
     margin-top: 12px;
-    width: 400px;
+    width: $boxWidth;
     box-shadow: 2px 14px 21px 9px rgba(0, 0, 0, 0.13);
     border: 1px solid #bbb;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  &__box-bottom {
+    width: $boxWidth - 4px;
+    height: 3px;
+    border: 1px solid #bbb;
+    border-top: none;
+    background-color: #ececec;
   }
 
   &__top-bar {

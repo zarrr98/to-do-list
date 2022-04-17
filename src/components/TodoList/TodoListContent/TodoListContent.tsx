@@ -12,6 +12,7 @@ const TodoListContent = () => {
         <TodoListHeader />
         <TodoVirtualList />
       </div>
+      <div className="todo-list__box-bottom" />
     </div>
   );
 };
