@@ -1,6 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import {
   ADD_TASK,
+  REMOVE_TASK,
   TodoListReducer,
 } from "../../reducers/TodoListReducer/TodoListReducer";
 import { TodoListItemType } from "../../utils/types";
@@ -11,6 +12,7 @@ export interface TodoListStates {
 
 interface TodoListContextInterface extends TodoListStates {
   addTaskToList: (text: string) => void;
+  removeTaskFromList: (taskIndex: number) => void;
 }
 
 const initialState: TodoListStates = {
@@ -20,6 +22,7 @@ const initialState: TodoListStates = {
 export const TodoListContext = createContext<TodoListContextInterface>({
   ...initialState,
   addTaskToList: () => void true,
+  removeTaskFromList: () => void true,
 });
 
 const TodoListProvider = (props: { children: React.ReactNode }) => {
@@ -34,9 +37,19 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
+  const removeTaskFromList = (taskIndex: number) => {
+    dispatch({
+      type: REMOVE_TASK,
+      payload: {
+        index: taskIndex,
+      },
+    });
+  };
+
   const value = {
     ...state,
     addTaskToList,
+    removeTaskFromList,
   };
 
   return (
