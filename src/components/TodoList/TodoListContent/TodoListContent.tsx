@@ -1,5 +1,6 @@
 import React from "react";
 import TodoListHeader from "../TodoListHeader/TodoListHeader";
+import TodoVirtualList from "../TodoVirtualList/TodoVirtualList";
 import "./styles.scss";
 
 const TodoListContent = () => {
@@ -8,6 +9,7 @@ const TodoListContent = () => {
       <h1 className="todo-list__title">Todo</h1>
       <div className="todo-list__box">
         <TodoListHeader />
+        <TodoVirtualList />
       </div>
     </div>
   );
