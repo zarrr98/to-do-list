@@ -4,16 +4,33 @@
   position: relative;
   border-bottom: 1px dotted #ddd;
   min-height: 40px;
+  max-height: auto;
 
+  transition: 0.5s;
+
+  &--zero-height {
+    min-height: 0;
+    padding: 0;
+  }
+
+  &__text {
+    &--deleted {
+      display: none;
+    }
+  }
   &__delete {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
     display: none;
+
+    &--deleted {
+      display: none;
+    }
   }
 
   &:hover {
-    .todo-list-item__delete {
+    .todo-list-item__delete:not(.todo-list-item__delete--deleted) {
       display: inline;
     }
   }
