@@ -25,8 +25,9 @@ const TodoListHeader = () => {
   };
 
   const handleAddingTask = () => {
-    if (inputValue) {
-      context.addTaskToList(inputValue);
+    const value = inputValue.trim();
+    if (value) {
+      context.addTaskToList(value);
       setInputValue("");
     }
   };
