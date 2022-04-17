@@ -73,7 +73,7 @@ const TodoListItem = ({ item, style, deleteItem }: Props) => {
       <Cross
         className={`todo-list-item__delete ${
           isDeleted && "todo-list-item__delete--deleted"
-        }`}
+        } ${isEditMode && "todo-list-item__delete--editing"}`}
         onClick={handleDeletingItems}
       />
     </div>

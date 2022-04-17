@@ -44,7 +44,7 @@
   }
 
   &:hover {
-    .todo-list-item__delete:not(.todo-list-item__delete--deleted) {
+    .todo-list-item__delete:not(.todo-list-item__delete--deleted):not(.todo-list-item__delete--editing) {
       display: inline;
     }
   }
