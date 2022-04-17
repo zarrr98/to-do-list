@@ -1,13 +1,8 @@
 .todo-list-header {
   width: 100%;
   &__input {
-    border: none;
     border-bottom: 1px dotted #bbb;
     padding: 15px 40px;
     width: 100%;
-
-    &:focus {
-      outline: none;
-    }
   }
 }
