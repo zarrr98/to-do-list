@@ -2,8 +2,19 @@
   width: 100%;
   padding: 10px 40px;
   position: relative;
-
-  border: 1px solid #ddd;
-  border-top: none;
+  border-bottom: 1px dotted #ddd;
   min-height: 40px;
+
+  &__delete {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+  }
+
+  &:hover {
+    .todo-list-item__delete {
+      display: inline;
+    }
+  }
 }
