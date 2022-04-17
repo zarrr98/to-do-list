@@ -4,6 +4,7 @@ export type ReducerActionType = {
 };
 
 export type TodoListItemType = {
+  id: string;
   text: string;
   isCompleted: boolean;
 };

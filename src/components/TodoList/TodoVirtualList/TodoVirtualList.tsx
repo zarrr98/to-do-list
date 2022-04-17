@@ -18,8 +18,8 @@ const TodoVirtualList = () => {
   //   })
   // );
 
-  const deleteTask = (index: number) => {
-    context.removeTaskFromList(index);
+  const deleteTask = (taskId: string) => {
+    context.removeTaskFromList(taskId);
   };
 
   return (
@@ -30,7 +30,7 @@ const TodoVirtualList = () => {
             key={i}
             item={task}
             style={{}}
-            deleteItem={() => deleteTask(i)}
+            deleteItem={() => deleteTask(task.id)}
           />
         );
       })}

@@ -12,7 +12,7 @@ export interface TodoListStates {
 
 interface TodoListContextInterface extends TodoListStates {
   addTaskToList: (text: string) => void;
-  removeTaskFromList: (taskIndex: number) => void;
+  removeTaskFromList: (taskId: string) => void;
 }
 
 const initialState: TodoListStates = {
@@ -37,11 +37,11 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
-  const removeTaskFromList = (taskIndex: number) => {
+  const removeTaskFromList = (taskId: string) => {
     dispatch({
       type: REMOVE_TASK,
       payload: {
-        index: taskIndex,
+        id: taskId,
       },
     });
   };
