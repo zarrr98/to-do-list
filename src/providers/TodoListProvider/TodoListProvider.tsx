@@ -1,5 +1,8 @@
 import React, { createContext, useReducer } from "react";
-import { TodoListReducer } from "../../reducers/TodoListReducer/TodoListReducer";
+import {
+  ADD_TASK,
+  TodoListReducer,
+} from "../../reducers/TodoListReducer/TodoListReducer";
 
 interface TodoListItemI {
   text: string;
@@ -10,7 +13,9 @@ export interface TodoListStates {
   list: TodoListItemI[];
 }
 
-interface TodoListContextInterface extends TodoListStates {}
+interface TodoListContextInterface extends TodoListStates {
+  addTaskToList: (text: string) => void;
+}
 
 const initialState: TodoListStates = {
   list: [],
@@ -18,13 +23,24 @@ const initialState: TodoListStates = {
 
 export const TodoListContext = createContext<TodoListContextInterface>({
   ...initialState,
+  addTaskToList: () => void true,
 });
 
 const TodoListProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(TodoListReducer, initialState);
 
+  const addTaskToList = (text: string) => {
+    dispatch({
+      type: ADD_TASK,
+      payload: {
+        text,
+      },
+    });
+  };
+
   const value = {
     ...state,
+    addTaskToList,
   };
 
   return (
