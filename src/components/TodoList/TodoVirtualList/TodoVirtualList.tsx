@@ -1,26 +1,40 @@
 import React, { useContext, useRef } from "react";
 import "./styles.scss";
-import {
-  AutoSizer,
-  List,
-  CellMeasurer,
-  CellMeasurerCache,
-} from "react-virtualized";
+// import {
+//   AutoSizer,
+//   List,
+//   CellMeasurer,
+//   CellMeasurerCache,
+// } from "react-virtualized";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
 import TodoListItem from "../TodoListItem/TodoListItem";
 
 const TodoVirtualList = () => {
   const context = useContext(TodoListContext);
-  const listSizeCache = useRef(
-    new CellMeasurerCache({
-      fixedWidth: true,
-      defaultHeight: 100,
-    })
-  );
+  // const listSizeCache = useRef(
+  //   new CellMeasurerCache({
+  //     fixedWidth: true,
+  //     defaultHeight: 100,
+  //   })
+  // );
+
+  const deleteTask = (index: number) => {
+    context.removeTaskFromList(index);
+  };
 
   return (
     <div className="todo-virtual-list">
-      <AutoSizer>
+      {context.list.map((task, i) => {
+        return (
+          <TodoListItem
+            key={i}
+            item={task}
+            style={{}}
+            deleteItem={() => deleteTask(i)}
+          />
+        );
+      })}
+      {/* <AutoSizer>
         {({ width, height }) => (
           <List
             width={width}
@@ -38,13 +52,17 @@ const TodoVirtualList = () => {
                   columnIndex={0}
                   rowIndex={index}
                 >
-                  <TodoListItem item={task} style={style} />
+                  <TodoListItem
+                    item={task}
+                    style={style}
+                    deleteItem={() => deleteTask(index)}
+                  />
                 </CellMeasurer>
               );
             }}
           />
         )}
-      </AutoSizer>
+      </AutoSizer> */}
     </div>
   );
 };
