@@ -7,10 +7,9 @@ import "./styles.scss";
 interface Props {
   item: TodoListItemType;
   style: React.CSSProperties;
-  deleteItem: () => void;
 }
 
-const TodoListItem = ({ item, style, deleteItem }: Props) => {
+const TodoListItem = ({ item, style }: Props) => {
   const context = useContext(TodoListContext);
 
   const [isDeleted, setIsDeleted] = useState(false);
@@ -20,7 +19,7 @@ const TodoListItem = ({ item, style, deleteItem }: Props) => {
   const handleDeletingItems = () => {
     setIsDeleted(true);
     setTimeout(() => {
-      deleteItem();
+      context.removeTaskFromList(item.id);
     }, 500);
   };
 

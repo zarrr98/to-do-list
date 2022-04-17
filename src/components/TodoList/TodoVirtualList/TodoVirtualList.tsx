@@ -18,21 +18,10 @@ const TodoVirtualList = () => {
   //   })
   // );
 
-  const deleteTask = (taskId: string) => {
-    context.removeTaskFromList(taskId);
-  };
-
   return (
     <div className="todo-virtual-list">
       {context.list.map((task) => {
-        return (
-          <TodoListItem
-            key={task.id}
-            item={task}
-            style={{}}
-            deleteItem={() => deleteTask(task.id)}
-          />
-        );
+        return <TodoListItem key={task.id} item={task} style={{}} />;
       })}
       {/* <AutoSizer>
         {({ width, height }) => (
