@@ -24,10 +24,10 @@ const TodoVirtualList = () => {
 
   return (
     <div className="todo-virtual-list">
-      {context.list.map((task, i) => {
+      {context.list.map((task) => {
         return (
           <TodoListItem
-            key={i}
+            key={task.id}
             item={task}
             style={{}}
             deleteItem={() => deleteTask(task.id)}
