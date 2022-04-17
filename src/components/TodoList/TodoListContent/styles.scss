@@ -1,0 +1,17 @@
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  &__title {
+    color: #ccc;
+  }
+
+  &__box {
+    margin-top: 12px;
+    width: 400px;
+    box-shadow: 2px 14px 21px 9px rgba(0, 0, 0, 0.13);
+  }
+}
