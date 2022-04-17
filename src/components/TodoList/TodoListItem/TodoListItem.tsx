@@ -46,7 +46,9 @@ const TodoListItem = ({ item, style, deleteItem }: Props) => {
 
   return (
     <div
-      className={`todo-list-item ${isDeleted && "todo-list-item--zero-height"}`}
+      className={`todo-list-item ${
+        isDeleted && "todo-list-item--zero-height"
+      } ${isEditMode && "todo-list-item--editing"}`}
       style={style}
       onClick={handleClickingOnItems}
     >
@@ -56,6 +58,7 @@ const TodoListItem = ({ item, style, deleteItem }: Props) => {
           onChange={(e) => setEditValue(e.target.value)}
           onKeyPress={handleKeyPressOnEditInput}
           onBlur={saveEditedChanges}
+          className={`todo-list-item__input`}
         />
       ) : (
         <p
