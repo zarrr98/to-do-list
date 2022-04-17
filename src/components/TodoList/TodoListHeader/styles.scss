@@ -1,0 +1,12 @@
+.todo-list-header {
+  &__input {
+    border: 1px solid #bbb;
+    border-top: 10px solid #777;
+    padding: 15px 40px;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
