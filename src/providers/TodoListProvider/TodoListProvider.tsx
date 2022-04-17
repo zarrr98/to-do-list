@@ -3,14 +3,10 @@ import {
   ADD_TASK,
   TodoListReducer,
 } from "../../reducers/TodoListReducer/TodoListReducer";
-
-interface TodoListItemI {
-  text: string;
-  isCompleted: boolean;
-}
+import { TodoListItemType } from "../../utils/types";
 
 export interface TodoListStates {
-  list: TodoListItemI[];
+  list: TodoListItemType[];
 }
 
 interface TodoListContextInterface extends TodoListStates {
