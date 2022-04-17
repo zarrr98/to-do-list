@@ -8,6 +8,7 @@ const TodoListContent = () => {
     <div className="todo-list">
       <h1 className="todo-list__title">Todo</h1>
       <div className="todo-list__box">
+        <div className="todo-list__top-bar" />
         <TodoListHeader />
         <TodoVirtualList />
       </div>

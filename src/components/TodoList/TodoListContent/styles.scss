@@ -13,5 +13,16 @@
     margin-top: 12px;
     width: 400px;
     box-shadow: 2px 14px 21px 9px rgba(0, 0, 0, 0.13);
+    border: 1px solid #bbb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__top-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #90817a;
+    border-bottom: 1px solid #736862;
   }
 }
