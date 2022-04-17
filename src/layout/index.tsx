@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from "../pages/Home/Home";
 import Main from "../pages/Main/Main";
 import NotFound from "../pages/NotFound/NotFound";
+import TodoList from "../pages/TodoList/TodoList";
 
 export default () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<TodoList />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
