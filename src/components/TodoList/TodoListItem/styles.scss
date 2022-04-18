@@ -23,6 +23,16 @@
       display: none;
     }
   }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #a4a4a4;
+    word-break: break-word;
+  }
+
   &__delete {
     right: 20px;
     top: 50%;
@@ -34,13 +44,16 @@
     }
   }
 
-  &__input {
-    width: 100%;
-    height: 100%;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 1px solid #a4a4a4;
-    word-break: break-word;
+  &__checkbox {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    accent-color: #6b036b;
+
+    &--hide {
+      display: none;
+    }
   }
 
   &:hover {

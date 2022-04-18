@@ -68,7 +68,12 @@ const TodoListItem = ({ item, style }: Props) => {
           {item.text}
         </p>
       )}
-
+      <input
+        type="checkbox"
+        className={`todo-list-item__checkbox ${
+          (isDeleted || isEditMode) && "todo-list-item__checkbox--hide"
+        } `}
+      ></input>
       <Cross
         className={`todo-list-item__delete ${
           isDeleted && "todo-list-item__delete--deleted"
