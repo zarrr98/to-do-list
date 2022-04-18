@@ -1,4 +1,5 @@
 import React from "react";
+import TodoListFooter from "../TodoListFooter/TodoListFooter";
 import TodoListHeader from "../TodoListHeader/TodoListHeader";
 import TodoVirtualList from "../TodoVirtualList/TodoVirtualList";
 import "./styles.scss";
@@ -13,6 +14,7 @@ const TodoListContent = () => {
         <TodoVirtualList />
       </div>
       <div className="todo-list__box-bottom" />
+      <TodoListFooter />
     </div>
   );
 };
