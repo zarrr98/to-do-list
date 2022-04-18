@@ -27,7 +27,7 @@ const TodoListFooter = () => {
     }, [] as string[]);
   };
 
-  return context.list.length ? (
+  return context.list.length && !context.editingItemId ? (
     <div className="todo-list-footer">
       <p>
         <strong>{getNumberofUndoneTasks()}</strong> items left
