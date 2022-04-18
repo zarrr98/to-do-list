@@ -1,10 +1,12 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
+import { getTasksFromStorage } from "../../components/TodoList/functions";
 import {
   ADD_TASK,
   CHANGE_FILTER,
   EDIT_TASK_TEXT,
   REMOVE_TASK,
+  SET_LIST,
   TodoListReducer,
   TOGGLE_COMPLETED_STATE,
 } from "../../reducers/TodoListReducer/TodoListReducer";
@@ -51,6 +53,11 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     getFilterValueFromUrl();
   }, []);
 
+  useEffect(() => {
+    const tasks = getTasksFromStorage();
+    setList(tasks as TodoListItemType[]);
+  }, []);
+
   const getFilterValueFromUrl = () => {
     let defaultFilter = TodoListFilterType.All;
     params.filter &&
@@ -59,6 +66,15 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
       });
 
     changeTodoListFilter(defaultFilter);
+  };
+
+  const setList = (list: TodoListItemType[]) => {
+    dispatch({
+      type: SET_LIST,
+      payload: {
+        tasks: list,
+      },
+    });
   };
 
   const addTaskToList = (text: string) => {
