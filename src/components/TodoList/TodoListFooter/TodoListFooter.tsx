@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
+import TodoListFilter from "../TodoListFilter/TodoListFilter";
 import "./styles.scss";
 
 const TodoListFooter = () => {
@@ -12,12 +13,15 @@ const TodoListFooter = () => {
     }, 0);
   };
 
-  return (
+  return context.list.length ? (
     <div className="todo-list-footer">
       <p>
         <strong>{getNumberofUndoneTasks()}</strong> items left
       </p>
+      <TodoListFilter />
     </div>
+  ) : (
+    <></>
   );
 };
 

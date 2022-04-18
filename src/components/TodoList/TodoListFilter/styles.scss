@@ -1,0 +1,10 @@
+.todo-list-filter {
+  display: flex;
+  &__option {
+    cursor: pointer;
+
+    &--active {
+      font-weight: 600;
+    }
+  }
+}
