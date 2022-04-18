@@ -8,6 +8,7 @@ import "./styles.scss";
 // } from "react-virtualized";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
 import TodoListItem from "../TodoListItem/TodoListItem";
+import { TodoListFilterType } from "../../../utils/enums";
 
 const TodoVirtualList = () => {
   const context = useContext(TodoListContext);
@@ -18,9 +19,14 @@ const TodoVirtualList = () => {
   //   })
   // );
 
+  const getFilteredList = () => {
+    if (context.filterType === TodoListFilterType.All) return context.list;
+    return context.list.filter((task) => !task.isCompleted);
+  };
+
   return (
     <div className="todo-virtual-list">
-      {context.list.map((task) => {
+      {getFilteredList().map((task) => {
         return <TodoListItem key={task.id} item={task} style={{}} />;
       })}
       {/* <AutoSizer>
