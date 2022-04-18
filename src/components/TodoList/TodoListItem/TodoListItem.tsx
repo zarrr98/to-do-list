@@ -37,9 +37,7 @@ const TodoListItem = ({ item, style }: Props) => {
   const saveEditedChanges = () => {
     console.log("save edited changes :", editValue);
     const newText = editValue.trim();
-    if (newText) {
-      context.editTaskText(item.id, newText);
-    }
+    newText ? context.editTaskText(item.id, newText) : setEditValue(item.text);
   };
 
   const checkboxChangeHandler = (e: React.ChangeEvent) => {
