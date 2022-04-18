@@ -25,7 +25,7 @@ const TodoVirtualList = () => {
   };
 
   return (
-    <div className="todo-virtual-list">
+    <div className="todo-virtual-list custome-scroll-bar">
       {getFilteredList().map((task) => {
         return <TodoListItem key={task.id} item={task} style={{}} />;
       })}
