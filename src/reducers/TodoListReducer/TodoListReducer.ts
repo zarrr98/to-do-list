@@ -1,6 +1,7 @@
 import { TodoListStates } from "../../providers/TodoListProvider/TodoListProvider";
 import { ReducerActionType } from "../../utils/types";
 import { v4 as uuidv4 } from "uuid";
+import { storeTasksInStorage } from "../../components/TodoList/functions";
 
 export const ADD_TASK = "ADD_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
@@ -20,6 +21,7 @@ export const TodoListReducer = (
         ...state.list,
         { text: action.payload.text, isCompleted: false, id },
       ];
+      storeTasksInStorage(newList);
       return {
         ...state,
         list: newList,
@@ -29,7 +31,7 @@ export const TodoListReducer = (
     case REMOVE_TASK: {
       const ids: string[] = action.payload.ids;
       let newList = state.list.filter((task) => !ids.includes(task.id));
-
+      storeTasksInStorage(newList);
       return {
         ...state,
         list: newList,
@@ -42,7 +44,7 @@ export const TodoListReducer = (
       newList.forEach((task, i) => {
         task.id === id && (newList[i].text = text);
       });
-
+      storeTasksInStorage(newList);
       return {
         ...state,
         list: newList,
@@ -59,7 +61,7 @@ export const TodoListReducer = (
         ...newList[taskIndx],
         isCompleted: !newList[taskIndx].isCompleted,
       };
-
+      storeTasksInStorage(newList);
       return {
         ...state,
         list: newList,
