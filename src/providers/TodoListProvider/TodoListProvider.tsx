@@ -54,9 +54,13 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    retrieveInitialTasksFromStorage();
+  }, []);
+
+  const retrieveInitialTasksFromStorage = () => {
     const tasks = getTasksFromStorage();
     setList(tasks as TodoListItemType[]);
-  }, []);
+  };
 
   const getFilterValueFromUrl = () => {
     let defaultFilter = TodoListFilterType.All;
