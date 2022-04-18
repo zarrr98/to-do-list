@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 export const ADD_TASK = "ADD_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const EDIT_TASK_TEXT = "EDIT_TASK_TEXT";
+export const TOGGLE_COMPLETED_STATE = "TOGGLE_COMPLETED_STATE";
 
 export const TodoListReducer = (
   state: TodoListStates,
@@ -39,6 +40,23 @@ export const TodoListReducer = (
       newList.forEach((task, i) => {
         task.id === id && (newList[i].text = text);
       });
+
+      return {
+        ...state,
+        list: newList,
+      };
+    }
+
+    case TOGGLE_COMPLETED_STATE: {
+      console.log("toggling completed state ....");
+
+      const { id } = action.payload;
+      const taskIndx = state.list.findIndex((t) => t.id === id);
+      const newList = [...state.list];
+      newList[taskIndx] = {
+        ...newList[taskIndx],
+        isCompleted: !newList[taskIndx].isCompleted,
+      };
 
       return {
         ...state,

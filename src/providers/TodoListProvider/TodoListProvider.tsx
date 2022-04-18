@@ -4,6 +4,7 @@ import {
   EDIT_TASK_TEXT,
   REMOVE_TASK,
   TodoListReducer,
+  TOGGLE_COMPLETED_STATE,
 } from "../../reducers/TodoListReducer/TodoListReducer";
 import { TodoListItemType } from "../../utils/types";
 
@@ -15,6 +16,7 @@ interface TodoListContextInterface extends TodoListStates {
   addTaskToList: (text: string) => void;
   removeTaskFromList: (taskId: string) => void;
   editTaskText: (taskId: string, newText: string) => void;
+  toggleCompletedStateOfTasks: (taskId: string) => void;
 }
 
 const initialState: TodoListStates = {
@@ -26,6 +28,7 @@ export const TodoListContext = createContext<TodoListContextInterface>({
   addTaskToList: () => void true,
   removeTaskFromList: () => void true,
   editTaskText: () => void true,
+  toggleCompletedStateOfTasks: () => void true,
 });
 
 const TodoListProvider = (props: { children: React.ReactNode }) => {
@@ -59,11 +62,21 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
+  const toggleCompletedStateOfTasks = (taskId: string) => {
+    dispatch({
+      type: TOGGLE_COMPLETED_STATE,
+      payload: {
+        id: taskId,
+      },
+    });
+  };
+
   const value = {
     ...state,
     addTaskToList,
     removeTaskFromList,
     editTaskText,
+    toggleCompletedStateOfTasks,
   };
 
   return (
