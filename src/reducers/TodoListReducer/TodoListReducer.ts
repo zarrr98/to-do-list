@@ -3,6 +3,7 @@ import { ReducerActionType } from "../../utils/types";
 import { v4 as uuidv4 } from "uuid";
 import { storeTasksInStorage } from "../../components/TodoList/functions";
 
+export const SET_LIST = "SET_LIST";
 export const ADD_TASK = "ADD_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const EDIT_TASK_TEXT = "EDIT_TASK_TEXT";
@@ -14,6 +15,12 @@ export const TodoListReducer = (
   action: ReducerActionType
 ) => {
   switch (action.type) {
+    case SET_LIST: {
+      const { tasks } = action.payload;
+      storeTasksInStorage(tasks);
+      return { ...state, list: tasks };
+    }
+
     case ADD_TASK: {
       const id = uuidv4();
 
