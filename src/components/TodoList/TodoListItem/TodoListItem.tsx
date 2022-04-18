@@ -44,7 +44,6 @@ const TodoListItem = ({ item, style }: Props) => {
   };
 
   const checkboxChangeHandler = (e: React.ChangeEvent) => {
-    e.stopPropagation();
     context.toggleCompletedStateOfTasks(item.id);
     console.log("changeeeeeeed ::", e.target.ariaChecked);
   };
@@ -79,6 +78,7 @@ const TodoListItem = ({ item, style }: Props) => {
         className={`todo-list-item__checkbox ${
           (isDeleted || isEditMode) && "todo-list-item__checkbox--hide"
         } `}
+        onClick={(e) => e.stopPropagation()}
         onChange={checkboxChangeHandler}
         checked={item.isCompleted}
       ></input>
