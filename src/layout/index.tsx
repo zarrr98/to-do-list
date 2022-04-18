@@ -10,6 +10,7 @@ export default () => {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route path="/" element={<TodoList />} />
+          <Route path=":filter" element={<TodoList />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
