@@ -1,4 +1,5 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
+import { useParams } from "react-router-dom";
 import {
   ADD_TASK,
   CHANGE_FILTER,
@@ -8,6 +9,7 @@ import {
   TOGGLE_COMPLETED_STATE,
 } from "../../reducers/TodoListReducer/TodoListReducer";
 import { TodoListFilterType } from "../../utils/enums";
+import { changeUrl } from "../../utils/functions";
 import { TodoListItemType } from "../../utils/types";
 
 export interface TodoListStates {
@@ -34,11 +36,30 @@ export const TodoListContext = createContext<TodoListContextInterface>({
   removeTaskFromList: () => void true,
   editTaskText: () => void true,
   toggleCompletedStateOfTasks: () => void true,
-  changeTodoListFilter: (filter: TodoListFilterType) => void true,
+  changeTodoListFilter: () => void true,
 });
 
 const TodoListProvider = (props: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(TodoListReducer, initialState);
+  const params = useParams();
+
+  useEffect(() => {
+    changeUrl(`/${state.filterType}`);
+  }, [state.filterType]);
+
+  useEffect(() => {
+    getFilterValueFromUrl();
+  }, []);
+
+  const getFilterValueFromUrl = () => {
+    let defaultFilter = TodoListFilterType.All;
+    params.filter &&
+      Object.values(TodoListFilterType).forEach((filter) => {
+        filter === params.filter?.toLowerCase() && (defaultFilter = filter);
+      });
+
+    changeTodoListFilter(defaultFilter);
+  };
 
   const addTaskToList = (text: string) => {
     dispatch({
