@@ -1,26 +1,17 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useState } from "react";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
 import "./styles.scss";
 
 const TodoListHeader = () => {
   const context = useContext(TodoListContext);
   const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setInputValue(value);
   };
 
-  useEffect(() => {
-    const inputDomNode = inputRef.current;
-    inputDomNode?.addEventListener("keypress", keyPressEventListener);
-
-    return () =>
-      inputDomNode?.removeEventListener("keypress", keyPressEventListener);
-  }, [inputValue]);
-
-  const keyPressEventListener = (e: KeyboardEvent) => {
+  const keyPressEventListener = (e: React.KeyboardEvent) => {
     e.key === "Enter" && handleAddingTask();
   };
 
@@ -38,8 +29,8 @@ const TodoListHeader = () => {
         className="todo-list-header__input"
         placeholder="What needs to be done?"
         value={inputValue}
-        onChange={(e) => inputChangeHandler(e)}
-        ref={inputRef}
+        onChange={inputChangeHandler}
+        onKeyDown={keyPressEventListener}
       />
     </div>
   );
