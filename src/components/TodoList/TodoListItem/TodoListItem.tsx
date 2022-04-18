@@ -55,7 +55,7 @@ const TodoListItem = ({ item, style }: Props) => {
         <input
           value={editValue}
           onChange={(e) => setEditValue(e.target.value)}
-          onKeyPress={handleKeyPressOnEditInput}
+          onKeyDown={handleKeyPressOnEditInput}
           onBlur={saveEditedChanges}
           className={`todo-list-item__input`}
         />
