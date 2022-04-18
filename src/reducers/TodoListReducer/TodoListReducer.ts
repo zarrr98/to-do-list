@@ -6,6 +6,7 @@ export const ADD_TASK = "ADD_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const EDIT_TASK_TEXT = "EDIT_TASK_TEXT";
 export const TOGGLE_COMPLETED_STATE = "TOGGLE_COMPLETED_STATE";
+export const CHANGE_FILTER = "CHANGE_FILTER";
 
 export const TodoListReducer = (
   state: TodoListStates,
@@ -61,6 +62,14 @@ export const TodoListReducer = (
       return {
         ...state,
         list: newList,
+      };
+    }
+
+    case CHANGE_FILTER: {
+      const { filter } = action.payload;
+      return {
+        ...state,
+        filterType: filter,
       };
     }
     default:
