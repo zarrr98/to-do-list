@@ -43,6 +43,12 @@ const TodoListItem = ({ item, style }: Props) => {
     }
   };
 
+  const checkboxChangeHandler = (e: React.ChangeEvent) => {
+    e.stopPropagation();
+    context.toggleCompletedStateOfTasks(item.id);
+    console.log("changeeeeeeed ::", e.target.ariaChecked);
+  };
+
   return (
     <div
       className={`todo-list-item ${
@@ -73,6 +79,8 @@ const TodoListItem = ({ item, style }: Props) => {
         className={`todo-list-item__checkbox ${
           (isDeleted || isEditMode) && "todo-list-item__checkbox--hide"
         } `}
+        onChange={checkboxChangeHandler}
+        checked={item.isCompleted}
       ></input>
       <Cross
         className={`todo-list-item__delete ${
