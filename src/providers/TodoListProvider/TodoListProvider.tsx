@@ -19,7 +19,7 @@ export interface TodoListStates {
 
 interface TodoListContextInterface extends TodoListStates {
   addTaskToList: (text: string) => void;
-  removeTaskFromList: (taskId: string) => void;
+  removeTaskFromList: (tasksIds: string[]) => void;
   editTaskText: (taskId: string, newText: string) => void;
   toggleCompletedStateOfTasks: (taskId: string) => void;
   changeTodoListFilter: (filter: TodoListFilterType) => void;
@@ -70,11 +70,11 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
-  const removeTaskFromList = (taskId: string) => {
+  const removeTaskFromList = (tasksIds: string[]) => {
     dispatch({
       type: REMOVE_TASK,
       payload: {
-        id: taskId,
+        ids: tasksIds,
       },
     });
   };

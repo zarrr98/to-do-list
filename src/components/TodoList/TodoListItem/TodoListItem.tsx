@@ -19,7 +19,7 @@ const TodoListItem = ({ item, style }: Props) => {
   const handleDeletingItems = () => {
     setIsDeleted(true);
     setTimeout(() => {
-      context.removeTaskFromList(item.id);
+      context.removeTaskFromList([item.id]);
     }, 500);
   };
 

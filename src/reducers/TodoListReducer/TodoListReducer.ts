@@ -27,7 +27,8 @@ export const TodoListReducer = (
     }
 
     case REMOVE_TASK: {
-      let newList = state.list.filter((task) => task.id !== action.payload.id);
+      const ids: string[] = action.payload.ids;
+      let newList = state.list.filter((task) => !ids.includes(task.id));
 
       return {
         ...state,
