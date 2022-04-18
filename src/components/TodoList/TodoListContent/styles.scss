@@ -1,4 +1,4 @@
-$boxWidth: 400px;
+@import "../../../assets/styles/variables";
 
 .todo-list {
   display: flex;
@@ -13,7 +13,7 @@ $boxWidth: 400px;
 
   &__box {
     margin-top: 12px;
-    width: $boxWidth;
+    width: $boxWidthLarge;
     box-shadow: 2px 14px 21px 9px rgba(0, 0, 0, 0.13);
     border: 1px solid #bbb;
     display: flex;
@@ -22,7 +22,7 @@ $boxWidth: 400px;
   }
 
   &__box-bottom {
-    width: $boxWidth - 4px;
+    width: $boxWidthLarge - 4px;
     height: 3px;
     border: 1px solid #bbb;
     border-top: none;
