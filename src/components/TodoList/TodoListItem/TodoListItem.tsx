@@ -13,8 +13,8 @@ const TodoListItem = ({ item, style }: Props) => {
   const context = useContext(TodoListContext);
 
   const [isDeleted, setIsDeleted] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false);
   const [editValue, setEditValue] = useState(item.text);
+  const isInEditMode = context.editingItemId === item.id;
 
   const handleDeletingItems = () => {
     setIsDeleted(true);
@@ -26,7 +26,7 @@ const TodoListItem = ({ item, style }: Props) => {
   const handleClickingOnItems = (e: React.MouseEvent) => {
     console.log("***** clicked", e.detail);
     if (e.detail === 2) {
-      !isEditMode && setIsEditMode(true);
+      context.setEditingItemId(item.id);
     }
   };
 
@@ -39,7 +39,6 @@ const TodoListItem = ({ item, style }: Props) => {
     const newText = editValue.trim();
     if (newText) {
       context.editTaskText(item.id, newText);
-      setIsEditMode(false);
     }
   };
 
@@ -52,11 +51,11 @@ const TodoListItem = ({ item, style }: Props) => {
     <div
       className={`todo-list-item ${
         isDeleted && "todo-list-item--zero-height"
-      } ${isEditMode && "todo-list-item--editing"}`}
+      } ${isInEditMode && "todo-list-item--editing"}`}
       style={style}
       onClick={handleClickingOnItems}
     >
-      {isEditMode ? (
+      {isInEditMode ? (
         <input
           value={editValue}
           onChange={(e) => setEditValue(e.target.value)}
@@ -76,7 +75,7 @@ const TodoListItem = ({ item, style }: Props) => {
       <input
         type="checkbox"
         className={`todo-list-item__checkbox ${
-          (isDeleted || isEditMode) && "todo-list-item__checkbox--hide"
+          (isDeleted || isInEditMode) && "todo-list-item__checkbox--hide"
         } `}
         onClick={(e) => e.stopPropagation()}
         onChange={checkboxChangeHandler}
@@ -85,7 +84,7 @@ const TodoListItem = ({ item, style }: Props) => {
       <Cross
         className={`todo-list-item__delete ${
           isDeleted && "todo-list-item__delete--deleted"
-        } ${isEditMode && "todo-list-item__delete--editing"}`}
+        } ${isInEditMode && "todo-list-item__delete--editing"}`}
         onClick={handleDeletingItems}
       />
     </div>

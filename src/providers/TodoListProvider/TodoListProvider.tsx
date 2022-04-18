@@ -6,6 +6,7 @@ import {
   CHANGE_FILTER,
   EDIT_TASK_TEXT,
   REMOVE_TASK,
+  SET_EDITING_ITEM_ID,
   SET_LIST,
   TodoListReducer,
   TOGGLE_COMPLETED_STATE,
@@ -17,6 +18,7 @@ import { TodoListItemType } from "../../utils/types";
 export interface TodoListStates {
   list: TodoListItemType[];
   filterType: TodoListFilterType;
+  editingItemId: string;
 }
 
 interface TodoListContextInterface extends TodoListStates {
@@ -25,11 +27,13 @@ interface TodoListContextInterface extends TodoListStates {
   editTaskText: (taskId: string, newText: string) => void;
   toggleCompletedStateOfTasks: (taskId: string) => void;
   changeTodoListFilter: (filter: TodoListFilterType) => void;
+  setEditingItemId: (id: string) => void;
 }
 
 const initialState: TodoListStates = {
   list: [],
   filterType: TodoListFilterType.All,
+  editingItemId: "",
 };
 
 export const TodoListContext = createContext<TodoListContextInterface>({
@@ -39,6 +43,7 @@ export const TodoListContext = createContext<TodoListContextInterface>({
   editTaskText: () => void true,
   toggleCompletedStateOfTasks: () => void true,
   changeTodoListFilter: () => void true,
+  setEditingItemId: () => void true,
 });
 
 const TodoListProvider = (props: { children: React.ReactNode }) => {
@@ -127,6 +132,15 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     });
   };
 
+  const setEditingItemId = (id: string) => {
+    dispatch({
+      type: SET_EDITING_ITEM_ID,
+      payload: {
+        id,
+      },
+    });
+  };
+
   const value = {
     ...state,
     addTaskToList,
@@ -134,6 +148,7 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
     editTaskText,
     toggleCompletedStateOfTasks,
     changeTodoListFilter,
+    setEditingItemId,
   };
 
   return (

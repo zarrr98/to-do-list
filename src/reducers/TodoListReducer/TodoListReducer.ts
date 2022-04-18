@@ -9,6 +9,7 @@ export const REMOVE_TASK = "REMOVE_TASK";
 export const EDIT_TASK_TEXT = "EDIT_TASK_TEXT";
 export const TOGGLE_COMPLETED_STATE = "TOGGLE_COMPLETED_STATE";
 export const CHANGE_FILTER = "CHANGE_FILTER";
+export const SET_EDITING_ITEM_ID = "SET_EDITING_ITEM_ID";
 
 export const TodoListReducer = (
   state: TodoListStates,
@@ -55,6 +56,7 @@ export const TodoListReducer = (
       return {
         ...state,
         list: newList,
+        editingItemId: "",
       };
     }
 
@@ -80,6 +82,15 @@ export const TodoListReducer = (
       return {
         ...state,
         filterType: filter,
+      };
+    }
+
+    case SET_EDITING_ITEM_ID: {
+      const { id } = action.payload;
+      let isValidId = state.list.map((task) => task.id).includes(id);
+      return {
+        ...state,
+        editingItemId: isValidId ? id : "",
       };
     }
     default:
