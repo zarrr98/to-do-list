@@ -10,7 +10,11 @@
   padding: 4px;
   font-size: 9px;
   color: #8d8d8d;
-  transition: width 0.2s;
+  transition: width 0.2s, opacity 0.3s;
+
+  &--hidden {
+    opacity: 0;
+  }
 
   @media screen and (max-width: 520px) {
     width: $boxWidthMedium - 8px;
