@@ -26,3 +26,19 @@ const isTodoTasksValid = (tasks: any) => {
 
   return true;
 };
+
+export const performDeletingAnimationOnTasks = (
+  taskIds: string[],
+  callback: () => void
+) => {
+  for (const taskId of taskIds) {
+    let taskElement = document.getElementById(`todo-list-item-id__${taskId}`);
+    if (taskElement) {
+      taskElement.classList.add("todo-list-item--zero-height");
+    }
+  }
+
+  setTimeout(() => {
+    callback();
+  }, 200);
+};
