@@ -48,6 +48,7 @@ const TodoListItem = ({ item, style }: Props) => {
         isDeleted && "todo-list-item--zero-height"
       } ${isInEditMode && "todo-list-item--editing"}`}
       style={style}
+      id={`todo-list-item-id__${item.id}`}
     >
       {isInEditMode ? (
         <input
@@ -58,13 +59,7 @@ const TodoListItem = ({ item, style }: Props) => {
           className={`todo-list-item__input`}
         />
       ) : (
-        <p
-          className={`todo-list-item__text ${
-            isDeleted && "todo-list-item__text--deleted"
-          }`}
-        >
-          {item.text}
-        </p>
+        <p className={`todo-list-item__text`}>{item.text}</p>
       )}
       <input
         type="checkbox"
@@ -77,8 +72,8 @@ const TodoListItem = ({ item, style }: Props) => {
       ></input>
       <Cross
         className={`todo-list-item__delete ${
-          isDeleted && "todo-list-item__delete--deleted"
-        } ${isInEditMode && "todo-list-item__delete--editing"}`}
+          isInEditMode && "todo-list-item__delete--editing"
+        }`}
         onClick={handleDeletingItems}
       />
     </div>

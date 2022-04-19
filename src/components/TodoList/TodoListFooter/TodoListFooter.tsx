@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
 import Button from "../../Button/Button";
+import { performDeletingAnimationOnTasks } from "../functions";
 import TodoListFilter from "../TodoListFilter/TodoListFilter";
 import "./styles.scss";
 
@@ -16,7 +17,9 @@ const TodoListFooter = () => {
 
   const removeCompletedTasks = () => {
     const completes = getCompletedTaskIds();
-    context.removeTaskFromList(completes);
+    performDeletingAnimationOnTasks(completes, () =>
+      context.removeTaskFromList(completes)
+    );
   };
 
   const getCompletedTaskIds = () => {

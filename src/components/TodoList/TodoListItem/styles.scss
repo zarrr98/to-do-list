@@ -25,16 +25,16 @@
   &--zero-height {
     min-height: 0;
     padding: 0;
+
+    .todo-list-item__text,
+    .todo-list-item__checkbox,
+    .todo-list-item__delete {
+      display: none;
+    }
   }
 
   &--editing {
     padding: 0 0 0 calc(var(--h-padding) / 2);
-  }
-
-  &__text {
-    &--deleted {
-      display: none;
-    }
   }
 
   &__input {
@@ -51,10 +51,6 @@
     top: 50%;
     transform: translateY(-50%);
     display: none;
-
-    &--deleted {
-      display: none;
-    }
   }
 
   &__checkbox {
@@ -70,7 +66,7 @@
   }
 
   &:hover {
-    .todo-list-item__delete:not(.todo-list-item__delete--deleted):not(.todo-list-item__delete--editing) {
+    .todo-list-item__delete:not(.todo-list-item__delete--editing) {
       display: inline;
     }
   }
