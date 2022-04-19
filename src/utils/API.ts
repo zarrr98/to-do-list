@@ -26,3 +26,10 @@ export const getAllTasks = () => {
       return err;
     });
 };
+
+export const deleteTask = (id: string) => {
+  return apiCall
+    .delete(`/tasks/${id}`)
+    .then((res) => res)
+    .catch((err) => err);
+};
