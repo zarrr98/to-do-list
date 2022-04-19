@@ -1,7 +1,7 @@
 import React from "react";
 import TodoListFooter from "../TodoListFooter/TodoListFooter";
 import TodoListHeader from "../TodoListHeader/TodoListHeader";
-import TodoVirtualList from "../TodoVirtualList/TodoVirtualList";
+import TodoTasksList from "../TodoTasksList/TodoTasksList";
 import "./styles.scss";
 
 const TodoListContent = () => {
@@ -11,7 +11,7 @@ const TodoListContent = () => {
       <div className="todo-list__box">
         <div className="todo-list__top-bar" />
         <TodoListHeader />
-        <TodoVirtualList />
+        <TodoTasksList />
       </div>
       <div className="todo-list__box-bottom" />
       <TodoListFooter />

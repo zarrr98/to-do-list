@@ -61,8 +61,6 @@ export const TodoListReducer = (
     }
 
     case TOGGLE_COMPLETED_STATE: {
-      console.log("toggling completed state ....");
-
       const { id } = action.payload;
       const taskIndx = state.list.findIndex((t) => t.id === id);
       const newList = [...state.list];

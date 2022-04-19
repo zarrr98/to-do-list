@@ -21,7 +21,7 @@ const TodoListItem = ({ item, style }: Props) => {
     setIsDeleted(true);
     setTimeout(() => {
       context.removeTaskFromList([item.id]);
-    }, 500);
+    }, 200);
   };
 
   const doubleClickHandler = useDoubleTap((event) => {
@@ -33,14 +33,12 @@ const TodoListItem = ({ item, style }: Props) => {
   };
 
   const saveEditedChanges = () => {
-    console.log("save edited changes :", editValue);
     const newText = editValue.trim();
     newText ? context.editTaskText(item.id, newText) : setEditValue(item.text);
   };
 
   const checkboxChangeHandler = (e: React.ChangeEvent) => {
     context.toggleCompletedStateOfTasks(item.id);
-    console.log("changeeeeeeed ::", e.target.ariaChecked);
   };
 
   return (
