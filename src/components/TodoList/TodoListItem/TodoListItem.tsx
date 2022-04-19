@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useDoubleTap } from "use-double-tap";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
 import { TodoListItemType } from "../../../utils/types";
 import Cross from "../../Cross/Cross";
@@ -23,12 +24,9 @@ const TodoListItem = ({ item, style }: Props) => {
     }, 500);
   };
 
-  const handleClickingOnItems = (e: React.MouseEvent) => {
-    console.log("***** clicked", e.detail);
-    if (e.detail === 2) {
-      context.setEditingItemId(item.id);
-    }
-  };
+  const doubleClickHandler = useDoubleTap((event) => {
+    context.setEditingItemId(item.id);
+  });
 
   const handleKeyPressOnEditInput = (e: React.KeyboardEvent) => {
     e.key === "Enter" && saveEditedChanges();
@@ -47,11 +45,11 @@ const TodoListItem = ({ item, style }: Props) => {
 
   return (
     <div
+      {...doubleClickHandler}
       className={`todo-list-item ${
         isDeleted && "todo-list-item--zero-height"
       } ${isInEditMode && "todo-list-item--editing"}`}
       style={style}
-      onClick={handleClickingOnItems}
     >
       {isInEditMode ? (
         <input
