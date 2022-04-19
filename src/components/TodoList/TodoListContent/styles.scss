@@ -4,11 +4,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  margin-top: 35px;
+
+  @media screen and (max-width: 393px) {
+    margin-top: 28px;
+  }
 
   &__title {
     color: #ccc;
+    font-size: 40px;
+
+    @media screen and (max-width: 520px) {
+      font-size: 36px;
+    }
+    @media screen and (max-width: 393px) {
+      font-size: 33px;
+    }
   }
 
   &__box {
@@ -19,6 +30,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.2s;
+
+    @media screen and (max-width: 520px) {
+      width: $boxWidthMedium;
+    }
+
+    @media screen and (max-width: 393px) {
+      width: $boxWidthSmall;
+    }
   }
 
   &__box-bottom {
@@ -27,12 +47,21 @@
     border: 1px solid #bbb;
     border-top: none;
     background-color: #ececec;
+    transition: 0.2s;
+
+    @media screen and (max-width: 520px) {
+      width: $boxWidthMedium - 4px;
+    }
+
+    @media screen and (max-width: 393px) {
+      width: calc($boxWidthSmall - 4px);
+    }
   }
 
   &__top-bar {
     width: 100%;
     height: 10px;
     background-color: #90817a;
-    border-bottom: 1px solid $topBarBorderColor;
+    border-bottom: 1px solid $scrollBarColor;
   }
 }

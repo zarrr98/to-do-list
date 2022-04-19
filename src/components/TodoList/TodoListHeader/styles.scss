@@ -4,5 +4,8 @@
     border-bottom: 1px dotted #bbb;
     padding: 15px 40px;
     width: 100%;
+    @media screen and (max-width: 520px) {
+      padding: 12px 34px;
+    }
   }
 }

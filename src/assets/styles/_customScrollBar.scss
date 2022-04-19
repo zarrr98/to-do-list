@@ -19,6 +19,6 @@
 
   &::-webkit-scrollbar-thumb {
     @include custom-scroll-track();
-    background-color: $topBarBorderColor;
+    background-color: $scrollBarColor;
   }
 }

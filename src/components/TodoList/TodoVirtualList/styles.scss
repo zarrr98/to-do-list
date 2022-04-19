@@ -6,4 +6,8 @@
   overflow-y: auto;
   overflow-x: hidden;
   border-top: none;
+
+  @media screen and (max-width: 393px) {
+    max-height: 300px;
+  }
 }
