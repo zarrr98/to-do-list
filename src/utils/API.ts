@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseURL = "https://snappshop.ir/";
+const baseURL = "http://localhost:5000/";
 
 const apiCall = axios.create({
   baseURL,
@@ -15,3 +15,14 @@ apiCall.interceptors.response.use(
     );
   }
 );
+
+export const getAllTasks = () => {
+  return apiCall
+    .get(`/tasks`)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      return err;
+    });
+};
