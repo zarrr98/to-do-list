@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useDoubleTap } from "use-double-tap";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
+import { TodoListFilterType } from "../../../utils/enums";
 import { TodoListItemType } from "../../../utils/types";
 import Cross from "../../Cross/Cross";
+import { performDeletingAnimationOnTasks } from "../functions";
 import "./styles.scss";
 
 interface Props {
@@ -37,8 +39,12 @@ const TodoListItem = ({ item, style }: Props) => {
     newText ? context.editTaskText(item.id, newText) : setEditValue(item.text);
   };
 
-  const checkboxChangeHandler = (e: React.ChangeEvent) => {
-    context.toggleCompletedStateOfTasks(item.id);
+  const checkboxChangeHandler = () => {
+    context.filterType === TodoListFilterType.Active
+      ? performDeletingAnimationOnTasks([item.id], () =>
+          context.toggleCompletedStateOfTasks(item.id)
+        )
+      : context.toggleCompletedStateOfTasks(item.id);
   };
 
   return (
