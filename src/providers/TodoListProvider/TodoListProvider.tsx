@@ -1,6 +1,9 @@
 import React, { createContext, useEffect, useReducer } from "react";
 import { useParams } from "react-router-dom";
-import { getTasksFromStorage } from "../../components/TodoList/functions";
+import {
+  getTasksFromStorage,
+  isTodoTasksValid,
+} from "../../components/TodoList/functions";
 import {
   ADD_TASK,
   CHANGE_FILTER,
@@ -11,6 +14,7 @@ import {
   TodoListReducer,
   TOGGLE_COMPLETED_STATE,
 } from "../../reducers/TodoListReducer/TodoListReducer";
+import { deleteTask, getAllTasks } from "../../utils/API";
 import { TodoListFilterType } from "../../utils/enums";
 import { changeUrl } from "../../utils/functions";
 import { TodoListItemType } from "../../utils/types";
@@ -59,12 +63,25 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    retrieveInitialTasksFromStorage();
+    retrieveInitialTasksFromServer();
   }, []);
 
   const retrieveInitialTasksFromStorage = () => {
     const tasks = getTasksFromStorage();
     setList(tasks as TodoListItemType[]);
+  };
+
+  const retrieveInitialTasksFromServer = () => {
+    const resp = getAllTasks();
+    resp
+      .then((tasks) => {
+        console.log("Got tasks from server --->", tasks);
+
+        tasks && isTodoTasksValid(tasks) && setList(tasks);
+      })
+      .catch((err) => {
+        console.log("Error in getting tasks from server :", err);
+      });
   };
 
   const getFilterValueFromUrl = () => {
@@ -96,6 +113,23 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
   };
 
   const removeTaskFromList = (tasksIds: string[]) => {
+    //
+    // let promises = [];
+    // for (const id of tasksIds) {
+    //   promises.push(deleteTask(id));
+    // }
+
+    // let b = deleteTask([tasksIds[0], tasksIds[1]]);
+    // // Promise.all(promises)
+    // b.then((res) => {
+    //   console.log(
+    //     "successfully deleted all tasks :",
+    //     res,
+    //     " ids were:",
+    //     tasksIds
+    //   );
+    // }).catch((err) => console.log("ohh noo! error in delet mult tasks :", err));
+    ///
     dispatch({
       type: REMOVE_TASK,
       payload: {

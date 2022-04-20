@@ -14,7 +14,7 @@ export const getTasksFromStorage = () => {
   return isValid ? tasks : [];
 };
 
-const isTodoTasksValid = (tasks: any) => {
+export const isTodoTasksValid = (tasks: any) => {
   const essentialKeys = ["id", "text", "isCompleted"];
 
   if (!tasks || !Array.isArray(tasks)) return false;
