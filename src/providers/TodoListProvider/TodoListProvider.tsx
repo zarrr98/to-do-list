@@ -56,10 +56,12 @@ const TodoListProvider = (props: { children: React.ReactNode }) => {
 
   useEffect(() => {
     getFilterValueFromUrl();
+    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     retrieveInitialTasksFromStorage();
+    //eslint-disable-next-line
   }, []);
 
   const retrieveInitialTasksFromStorage = () => {

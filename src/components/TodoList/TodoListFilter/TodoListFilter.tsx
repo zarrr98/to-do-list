@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { TodoListContext } from "../../../providers/TodoListProvider/TodoListProvider";
 import { TodoListFilterType } from "../../../utils/enums";
 import "./styles.scss";
